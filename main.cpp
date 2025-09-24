@@ -12,51 +12,42 @@ public:
 		numerator_ = numerator;
 		denominator_ = denominator;
 	}
-
-	int SetterNumerator()
+	bool operator ==(Fraction& other)
 	{
-		return numerator_;
-	}
-	int SetterDenominator()
-	{
-		return denominator_;
+		return numerator_ * other.denominator_ == other.numerator_ * denominator_;
 	}
 
-	bool operator==(Fraction& y)
+	bool operator !=(Fraction& other)
 	{
-		return numerator_ * y.denominator_ == y.numerator_ * denominator_;
+		return !(*this == other);
 	}
 
-	bool operator!=(Fraction& y)
+	bool operator >(Fraction& other)
 	{
-		return numerator_ * y.denominator_ != y.numerator_ * denominator_;
+		return numerator_ * other.denominator_ > other.numerator_ * denominator_;
 	}
 
-	bool operator<(Fraction& y)
+	bool operator <(Fraction& other)
 	{
-		return numerator_ * y.denominator_ < y.numerator_ * denominator_;
+		return other > *this;
 	}
 
-	bool operator>(Fraction& y)
+	bool operator <=(Fraction& other)
 	{
-		return numerator_ * y.denominator_ > y.numerator_ * denominator_;
+		return !(*this > other);
 	}
 
-	bool operator<=(Fraction& y)
+	bool operator >=(Fraction& other)
 	{
-		return numerator_ * y.denominator_ <= y.numerator_ * denominator_;
-	}
-
-	bool operator>=(Fraction& y)
-	{
-		return numerator_ * y.denominator_ >= y.numerator_ * denominator_;
+		return !(*this < other);
 	}
 };
 
 
+
 int main()
 {
-	Fraction f1(6, 11);
+	Fraction f1(3, 5);
 	Fraction f2(6, 11);
 
 	std::cout << "f1" << ((f1 == f2) ? " == " : " not == ") << "f2" << '\n';
